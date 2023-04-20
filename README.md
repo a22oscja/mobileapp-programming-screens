@@ -1,42 +1,38 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+To begin with, I added an editText, button, and textView in the main activity.
+These were then styled to sit in the middle of the screen going downwards vertically.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+Another activity was created, a textView was added in the middle.
 
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
-
+The following code is from the middle of the OnCreate() method in MainActivity:
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+    Button button = findViewById(R.id.revealButton);
+    button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            EditText secrets = findViewById(R.id.secrets);
+            String secretText = String.valueOf(secrets.getText());
+            Intent intent = new Intent(MainActivity.this, Revealed.class);
+            intent.putExtra("secretText", secretText);
+            startActivity(intent);
+        }
+    });
+```
+This code begins by assigning a new OnClickListener, then opening up to define it.
+Upon the button being clicked, the intent is defined as the text currently written in secrets.
+Before starting the next activity, called Revealed in this case.
+
+The following code is taken from OnCreate in Revealed:
+```
+    Bundle extras = getIntent().getExtras();
+    if (extras != null) {
+        TextView mainText = findViewById(R.id.mainText);
+        String secretText = extras.getString("secretText");
+        mainText.setText(secretText);
     }
-}
 ```
-
-Bilder läggs i samma mapp som markdown-filen.
-
-![](android.png)
-
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+This is the main piece of code used in Revealed.
+It very simply checks for any extras sent upon it starting and, should it not be null,
+sets its own textView's text to whatever text was sent over.
