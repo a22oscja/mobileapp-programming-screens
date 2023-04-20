@@ -7,12 +7,21 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/textView"
+        android:layout_width="160dp"
+        android:layout_height="25dp"
+        android:text="Enter secrets:"
+        app:layout_constraintBottom_toTopOf="@+id/secrets"
+        app:layout_constraintStart_toStartOf="@+id/secrets" />
 
+    <EditText
+        android:id="@+id/secrets"
+        android:layout_width="233dp"
+        android:layout_height="81dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
