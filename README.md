@@ -24,6 +24,10 @@ This code begins by assigning a new OnClickListener, then opening up to define i
 Upon the button being clicked, the intent is defined as the text currently written in secrets.
 Before starting the next activity, called Revealed in this case.
 
+This leads to the first activity looking like (text written in bar is "Secret"):
+
+![Screen 1](Screenshot_1.png)
+
 The following code is taken from OnCreate in Revealed:
 ```
     Bundle extras = getIntent().getExtras();
@@ -36,3 +40,10 @@ The following code is taken from OnCreate in Revealed:
 This is the main piece of code used in Revealed.
 It very simply checks for any extras sent upon it starting and, should it not be null,
 sets its own textView's text to whatever text was sent over.
+
+Revealed then looks as follows, building upon the example set in the last screenshot:
+
+![Screen 2](Screenshot_2.png)
+
+As can be seen, the program works as intended with the text written in the first activity being
+displayed in the second.
